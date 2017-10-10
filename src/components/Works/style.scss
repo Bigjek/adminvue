@@ -26,7 +26,19 @@
 .form-title {
   margin-bottom: 20px;
 }
-
+.container {
+  display: flex;
+}
 .error-message {
   color: firebrick;
+}
+.col {
+  flex: 1;
+}
+.table {
+  max-height: 400px;
+  overflow: auto;
+}
+.posts {
+  width: 100%;
 }

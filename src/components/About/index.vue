@@ -1,8 +1,8 @@
 <template lang="pug">
   .about
-    h2.title Страница "Обо мне"
+    h2.title Страница «Обо мне»
     .skills-list
-      SkillsList(
+      skillsList(
         v-for="(skillType, index) in skillsTypes"
         :skillGroup="skillType"
         :key="index"
@@ -37,7 +37,7 @@ export default {
     this.fetchSkills()
   },
   components: {
-    SkillsList: require('./skills-list')
+    skillsList: require('./skills-list')
   }
 }
 </script>

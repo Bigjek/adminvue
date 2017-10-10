@@ -26,7 +26,7 @@
       )
 </template>
 <script>
-
+import { mapActions, mapGetters } from 'vuex'
 import { Validator } from 'simple-vue-validator'
 
 export default {
@@ -45,6 +45,7 @@ export default {
     skills: Array
   },
   methods: {
+    ...mapActions('skills', ['fetchAdd']),
     addSkill(skillGroup) {
       this.$validate().then(success => {
         if (!success) return
@@ -55,6 +56,12 @@ export default {
           type: this.checkSkillType(skillGroup)
         })
       })
+      const dataparams = {
+        'title': this.skillName,
+        'perc': 0,
+        'type': this.checkSkillType(skillGroup)
+      }
+      this.fetchAdd(dataparams)
     },
     removeSkill(skillId) {
       this.$emit('removeSkill', skillId)
@@ -74,7 +81,13 @@ export default {
     Skill: require('../skill'),
     AppInput: require('_common/Input'),
     AppButton: require('_common/Button')
+  },
+  computed: {
+    ...mapGetters('skills', ['skills'])
   }
+  // mounted() {
+  //   this.fetchSkills()
+  // }
 }
 </script>
 <style src="./style.scss" lang="scss" scoped></style>

@@ -8,6 +8,9 @@ const skills = {
   },
   mutations: {
     addNewSkill(state, skill) {
+      // state.data.push(skill)
+    },
+    addNew(state, skill) {
       state.data.push(skill)
     },
     removeSavedSkill(state, skillId) {
@@ -17,11 +20,18 @@ const skills = {
   actions: {
     fetchSkills({ state, rootGetters }) {
       const { $http } = rootGetters
-      $http.get('About/data.json').then(response => {
+      $http.get('about').then(response => {
         state.data = response.body
       }, response => {
         console.error(response)
       })
+    },
+    fetchAdd({ state, rootGetters, commit }, dataparams) {
+      const { $http } = rootGetters
+      $http.post('about', dataparams).then((response) => {
+        state.data = response.body
+        // commit(['addNew'])
+      }, response => { console.error('нет ', dataparams) })
     }
   }
 }

@@ -5,7 +5,11 @@ const works = {
   },
   actions: {
     addNewWork({ state, rootGetters }, fields) {
-      console.log(fields)
+      console.log('fields', fields)
+      const { $http } = rootGetters
+      $http.post('work', fields).then((response) => {
+        console.error('есть ', fields)
+      }, response => { console.error('нет ', fields) })
     }
   }
 }

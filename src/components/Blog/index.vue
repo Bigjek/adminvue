@@ -1,6 +1,6 @@
 <template lang="pug">
   .blog
-    h2.title Страница "Блог"
+    h2.title Страница «Блог»
     .container
       .form.col
         h3.form-title Добавить запись
@@ -19,7 +19,7 @@
           textarea.input.blog-textarea(
             type="text" 
             placeholder="Содержание"
-            v-model="fields.text"
+            v-model="fields.body"
           )
         .row
           app-button(
@@ -28,33 +28,61 @@
           )
       .table.col
         table.posts
-          tr(v-for="(post, index) in posts")
-            td {{post.title}}
-            td {{post.date}}
-            td {{post.text}}
+          tr.tr(v-for="(post, index) in posts.articles"
+            :key="index"
+            )
+            td
+              tr
+                td {{post.title}}
+                td {{post.date | formatDate}}  
+                
+              tr 
+                td {{post.body}}
+                td 
+                  app-button(
+                    title="Удалить"
+                    @click="removePost(post._id)"
+                  )
 </template>
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   data: () => ({
     fields: {
       title: '',
       date: '',
-      text: ''
+      body: ''
     }
   }),
   methods: {
+    ...mapActions('posts', ['fetchBlogs']),
+    ...mapActions('posts', ['fetchInBlogs']),
     ...mapMutations('posts', ['addBlogPost']),
     addPost() {
-      const fieldsData = _.clone(this.fields)
-      this.addBlogPost(fieldsData)
+      const dataparams = {
+        'title': this.fields.title,
+        'date': this.fields.date,
+        'text': this.fields.body
+      }
+      this.fetchInBlogs(dataparams)
+      this.fetchBlogs()
+    },
+    removePost(id) {
+      console.log('id ', id)
+      this.$http.delete('blog/' + id).then((response) => {
+        console.log('есть ', response.message)
+      }, response => { console.error('нет ', response) })
+      this.fetchBlogs()
     }
   },
   computed: {
     ...mapGetters('posts', ['posts'])
   },
   mounted() {
-
+    this.fetchBlogs()
+  },
+  props: {
+    posts: Object
   },
   components: {
     AppButton: require('_common/Button'),

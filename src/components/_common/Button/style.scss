@@ -1,13 +1,13 @@
 button {
-  padding: 16px 20px;
+  padding: 13px 20px;
   border-radius: 5px;
-  background-color: #00bfa5;
+  background-color: #6c9c5a;
   color: #fff;
   border: none;
   cursor: pointer;
   
   &:hover {
-    background-color: darken(#00bfa5, 10%);
+    background-color: darken(#6c9c5a, 10%);
   }
 
   &[disabled] {

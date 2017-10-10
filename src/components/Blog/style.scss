@@ -21,9 +21,16 @@
 
 .posts {
   width: 100%;
+   .tr:nth-child(odd){
+    background: rgba(212, 212, 212, 0.62);
+  }
 }
 
 .blog-textarea {
   width: 80%;
   height: 165px;
+  border-radius: 5px;
+  background: #fff;
+  padding: 7px;
+  border: 0 none;
 }

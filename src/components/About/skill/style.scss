@@ -25,6 +25,10 @@
 .skill-input {
   width: 46px;
   text-align: center;
+  padding: 7px 0;
+  border-radius: 5px;
+  border: 0px;
+  margin-right: 10px;
 }
 
 .remove-btn {
@@ -33,4 +37,12 @@
   transform: translateY(-50%);
   left: 0;
   display: none;
+  button{
+    background: #6c9c5a;
+    border: 0;
+    border-radius: 3px;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
 }

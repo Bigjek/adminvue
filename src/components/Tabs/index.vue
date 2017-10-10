@@ -16,9 +16,9 @@
 export default {
   data: () => ({
     tabs: [
-      { name: 'Обо мне', route: '/' },
-      { name: 'Блог', route: '/blog' },
-      { name: 'Мои работы', route: '/works' }
+      { name: 'Обо мне', route: '/adminvue' },
+      { name: 'Блог', route: '/adminvue/blog' },
+      { name: 'Мои работы', route: '/adminvue/works' }
     ]
   })
 }
